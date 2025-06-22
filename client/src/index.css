@@ -2,9 +2,12 @@
 
 /* Layout container */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: start;
 }
+
 
 /* Body base layout */
 body {
@@ -15,13 +18,14 @@ body {
   min-height: 100vh;
   background-color: #fff;
   color: #1a1a1a;
+  overflow-x: hidden;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 /* Optional: Link style override */
-a {
+body a:not(nav a):not(.no-style) {
   font-weight: 500;
-  color: #4f46e5; /* Indigo-600 */
+  color: #4f46e5;
   text-decoration: none;
 }
 a:hover {
