@@ -14,7 +14,21 @@ const fullPromptRoute = require("./routes/fullPromptRoute");
 
 
 // ✅ Middleware
-app.use(cors({ origin: process.env.FRONTEND_ORIGIN || "http://localhost:5173" }));
+// app.use(cors({ origin: process.env.FRONTEND_ORIGIN || "http://localhost:5173" }));
+app.use(cors({
+    origin: (origin, callback) => {
+      const allowed = [
+        "http://localhost:5173",
+        "https://govt-exams-helper.vercel.app"
+      ];
+      if (!origin || allowed.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true
+  }));
+
 app.use(express.json());
 app.use(morgan("dev")); // logs each request
 app.use("/api/interview", fullPromptRoute);
